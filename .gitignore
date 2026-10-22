@@ -1,0 +1,9 @@
+/target
+/.pdfium
+/out
+*.pdf.tmp
+.DS_Store
+# Fill output from the README demo
+/out.pdf
+.env
+.env.local

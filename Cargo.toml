@@ -1,0 +1,36 @@
+[package]
+name = "pdf-form-filler"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+description = "Fill AcroForms (including owner-encrypted and hybrid-XFA government forms) with PDFium, verify the result, and isolate each job in a killable child process"
+license = "MIT"
+repository = "https://github.com/treyktw/pdf-form-filler"
+readme = "README.md"
+keywords = ["pdf", "pdfium", "acroform", "forms"]
+categories = ["text-processing", "command-line-utilities"]
+default-run = "pdfctl"
+
+[features]
+default = ["signing"]
+# HMAC-SHA256 request signing (src/signing.rs). Independent of the PDF code.
+signing = ["dep:chrono", "dep:hmac", "dep:sha2", "dep:hex", "dep:uuid"]
+
+[dependencies]
+image = { version = "0.25.10", default-features = false, features = ["png"] }
+lopdf = { version = "0.45.0", default-features = false }
+pdfium-render = { version = "0.9.4", default-features = false, features = ["pdfium_7881", "thread_safe", "image_latest"] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = { version = "1.0.154", features = ["preserve_order"] }
+tempfile = "3.27.0"
+thiserror = "2.0.21"
+tokio = { version = "1.54.0", features = ["rt", "macros", "time", "process"] }
+
+chrono = { version = "0.4.45", default-features = false, features = ["clock", "std"], optional = true }
+hex = { version = "0.4.3", optional = true }
+hmac = { version = "0.13.0", optional = true }
+sha2 = { version = "0.11.1", optional = true }
+uuid = { version = "1.28.0", features = ["v4"], optional = true }
+
+[dev-dependencies]
+tokio = { version = "1.54.0", features = ["rt", "macros", "time", "process"] }

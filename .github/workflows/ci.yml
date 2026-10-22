@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      REQUIRE_PDFIUM: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+      - name: Install qpdf
+        run: sudo apt-get update && sudo apt-get install --yes qpdf
+      - name: Fetch PDFium
+        run: scripts/fetch-pdfium.sh | sed 's/^export //' >> "$GITHUB_ENV"
+      - run: cargo fmt --check
+      - run: cargo clippy --all-targets --locked -- -D warnings
+      - run: cargo build --locked
+      - run: cargo test --locked
+      - name: CLI demo
+        run: |
+          cargo run --locked -q -- fill --form fixtures/forms/ga-t7-bill-of-sale.pdf --data examples/ga-t7-bill-of-sale.json --out out.pdf
+          cargo run --locked -q -- verify out.pdf --data examples/ga-t7-bill-of-sale.json
+          cargo run --locked -q -- render out.pdf 1 page1.png
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build --target test .
+      - run: docker build -t pdf-form-filler .
+      - run: docker run --rm -v "$PWD:/work:ro" pdf-form-filler inspect /work/fixtures/forms/ga-t8-limited-power-of-attorney.pdf

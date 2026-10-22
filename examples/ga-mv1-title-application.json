@@ -1,0 +1,19 @@
+{
+  "$comment": "Synthetic values only. Exercises text, checkbox and radio fields on an owner-password-encrypted form.",
+  "VIN": "1ZZZZ00Z8NZ000001",
+  "Year": "2022",
+  "Make": "EXAMPLE",
+  "Model": "SEDAN LX",
+  "Body Style": "4D",
+  "Color": "GRAY",
+  "Cylinders": "4",
+  "Fuel Type": "GAS",
+  "Odometer Reading": "12345",
+  "Date Purchased": "10/22/2026",
+  "EXEMPT": false,
+  "Exceeds Mechanical Limits of Odometer": false,
+  "Leased Vehicle": "No",
+  "Number of Owners": "1",
+  "Owner1_0": "Jordan Q. Testbuyer",
+  "County of Residence": "Sample"
+}

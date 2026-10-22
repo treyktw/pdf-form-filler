@@ -1,0 +1,13 @@
+{
+  "$comment": "Synthetic values only. The FTC Buyers Guide is a hybrid XFA form: its XFA layer is removed and the AcroForm filled.",
+  "topmostSubform[0].BG-AsIs[0].VehicleMake[0]": "EXAMPLE",
+  "topmostSubform[0].BG-AsIs[0].Model[0]": "SEDAN LX",
+  "topmostSubform[0].BG-AsIs[0].Year[0]": "2022",
+  "topmostSubform[0].BG-AsIs[0].VIN[0]": "1ZZZZ00Z8NZ000001",
+  "topmostSubform[0].BG-AsIs[0].Warranty[0]": "As Is",
+  "topmostSubform[0].BG-AsIs[0].NonDealerWarranty[0]": "Manufacturer",
+  "topmostSubform[0].BG-Back[0].DealerName[0]": "Sample Motors LLC",
+  "topmostSubform[0].BG-Back[0].DealerAddress[0]": "100 Example Parkway, Springfield, GA 30000",
+  "topmostSubform[0].BG-Back[0].DealerPhone[0]": "(555) 010-0000",
+  "topmostSubform[0].BG-Back[0].DealerEmail[0]": "sales@example.com"
+}
